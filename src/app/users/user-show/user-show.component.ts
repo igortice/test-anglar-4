@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector:    'app-user-show',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls:   [ './user-show.component.scss' ]
 })
 export class UserShowComponent implements OnInit {
-  constructor() { }
+  currentId: number;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.currentId = +this.route.snapshot.paramMap.get('id');
   }
 }
