@@ -3,14 +3,16 @@
     <thead class='thead-default'>
       <tr class='row'>
         <th class='col-1 text-center'>ID</th>
-        <th class='col-9'>USERNAME</th>
+        <th class='col-7'>USERNAME</th>
+        <th class='col-2 text-center'>STATUS</th>
         <th class='col-2 text-center'>ACTION</th>
       </tr>
     </thead>
     <tbody>
       <tr class='row' *ngFor='let user of users'>
         <th scope='row' class='col-1 text-center'>{{ user.id }}</th>
-        <td class='col-9'>{{ user.name }}</td>
+        <td class='col-7'>{{ user.name }}</td>
+        <td class='col-2 text-center'>{{ user.status || 'null' }}</td>
         <td class='col-2 text-center'>
           <a class='btn btn-sm btn-primary' [routerLink]="[user.id, 'show']">show</a>
         </td>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector:    'app-user-list',
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls:   [ './user-list.component.scss' ]
 })
 export class UserListComponent implements OnInit {
-  users = [
-    { id: 1, name: 'nome um' },
-    { id: 2, name: 'nome dois' },
-    { id: 3, name: 'nome tres' }
-  ];
+  users;
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.users = this.usersService.users;
+
+    this.usersService.userActivatedId.subscribe(
+      (id: number) => {
+        this.users[ id - 1 ].status = 'ativo';
+        console.log(this.users);
+      }
+    );
   }
 }
