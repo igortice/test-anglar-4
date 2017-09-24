@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { BodyComponent } from './layout/body/body.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { UsersComponent } from './users/users.component';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,12 @@ import { UsersComponent } from './users/users.component';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    AboutComponent,
-    UsersComponent
+    AboutComponent
   ],
   imports:      [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UsersModule
   ],
   providers:    [],
   bootstrap:    [ AppComponent ]
