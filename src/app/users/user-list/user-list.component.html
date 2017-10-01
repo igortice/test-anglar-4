@@ -2,16 +2,35 @@
   <table class='table'>
     <thead class='thead-default'>
       <tr class='row'>
-        <th class='col-1 text-center'>ID</th>
-        <th class='col-7'>USERNAME</th>
-        <th class='col-2 text-center'>STATUS</th>
-        <th class='col-2 text-center'>ACTION</th>
+        <th class='col-1 text-center'>
+          ID
+          <br>
+          <input type='number' class='form-control form-control-sm' [(ngModel)]='filterUser.id'>
+        </th>
+        <th class='col-7'>
+          USERNAME
+          <br>
+          <input type='text' class='form-control form-control-sm' [(ngModel)]='filterUser.name'>
+        </th>
+        <th class='col-2 text-center'>
+          STATUS
+          <br>
+          <input type='text' class='form-control form-control-sm' [(ngModel)]='filterUser.status'>
+        </th>
+        <th class='col-2 text-center'>
+          ACTIONS
+          <br>
+          <button type="button"
+                  class="btn btn-sm btn-outline-success btn-block"
+                  data-toggle="modal"
+                  data-target="#exampleModal" (click)='openModalNewUser()'>+</button>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr class='row' *ngFor='let user of users'>
+      <tr class='row' *ngFor='let user of users | userlistfilter:filterUser'>
         <th scope='row' class='col-1 text-center'>{{ user.id }}</th>
-        <td class='col-7'>{{ user.name }}</td>
+        <td class='col-7'>{{ user.name | uppercase}}</td>
         <td class='col-2 text-center'>{{ user.status || 'null' }}</td>
         <td class='col-2 text-center'>
           <a class='btn btn-sm btn-primary' [routerLink]="[user.id, 'show']">show</a>
@@ -19,4 +38,41 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+     aria-hidden='true'>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>New message</h5>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <form>
+          <div class='form-group'>
+            <label for='recipient-name' class='form-control-label'>Name:</label>
+            <input type='text'
+                   class='form-control'
+                   id='recipient-name'
+                   name='recipient-name'
+                   [(ngModel)]='newUser.name'>
+          </div>
+          <div class='form-group'>
+            <select type='text'
+                    class='form-control' name='recipient-status' [(ngModel)]='newUser.status'>
+              <option value='ativo'>ATIVO</option>
+              <option value='inativo'>INATIVO</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+        <button type='button' class='btn btn-primary' (click)='createNewUser()' data-dismiss='modal'>Send New User</button>
+      </div>
+    </div>
+  </div>
 </div>

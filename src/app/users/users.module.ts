@@ -6,16 +6,20 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserShowComponent } from './user-show/user-show.component';
 import { UsersService } from './users.service';
 import { UsersComponent } from './users.component';
+import { UserListFilterPipe } from './user-list/user-list-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports:      [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    FormsModule
   ],
   declarations: [
     UsersComponent,
     UserListComponent,
-    UserShowComponent
+    UserShowComponent,
+    UserListFilterPipe
   ],
   providers:    [ UsersService ],
   bootstrap:    [ UsersComponent ]

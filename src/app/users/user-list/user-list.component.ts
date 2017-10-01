@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import { User } from '../../_models/user';
 
 @Component({
   selector:    'app-user-list',
@@ -7,7 +8,9 @@ import { UsersService } from '../users.service';
   styleUrls:   [ './user-list.component.scss' ]
 })
 export class UserListComponent implements OnInit {
-  users;
+  users: User[];
+  filterUser: User = new User();
+  newUser: User = new User();
 
   constructor(private usersService: UsersService) { }
 
@@ -20,5 +23,15 @@ export class UserListComponent implements OnInit {
         console.log(this.users);
       }
     );
+  }
+
+  openModalNewUser(): void {
+    this.newUser = new User();
+    this.newUser.status = 'inativo';
+  }
+
+  createNewUser(): void {
+    this.newUser.id = this.users.length + 1
+    this.users.push(this.newUser);
   }
 }

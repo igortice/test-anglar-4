@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { User } from '../_models/user';
 
 @Injectable()
 export class UsersService {
   userActivatedId = new Subject();
-  users           = [
-    { id: 1, name: 'nome um', status: '' },
-    { id: 2, name: 'nome dois', status: '' },
-    { id: 3, name: 'nome tres', status: '' }
-  ];
+  users: User[];
 
-  constructor() { }
+  constructor() {
+    this.users = [
+      new User(1, 'igor rocha', 'inativo'),
+      new User(2, 'iandara girao', 'inativo'),
+      new User(3, 'gabriel bezerra', 'inativo'),
+    ];
+  }
 
 }
