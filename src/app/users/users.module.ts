@@ -8,12 +8,14 @@ import { UsersService } from './users.service';
 import { UsersComponent } from './users.component';
 import { UserListFilterPipe } from './user-list/user-list-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports:      [
     CommonModule,
     UsersRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [
     UsersComponent,

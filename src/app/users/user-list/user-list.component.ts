@@ -15,7 +15,11 @@ export class UserListComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.users = this.usersService.users;
+    this.usersService.all().subscribe(
+      (resp: User[]) => {
+        this.users = resp;
+      }
+    );
 
     this.usersService.userActivatedId.subscribe(
       (id: number) => {
@@ -33,5 +37,6 @@ export class UserListComponent implements OnInit {
   createNewUser(): void {
     this.newUser.id = this.users.length + 1
     this.users.push(this.newUser);
+    this.usersService.save(this.users);
   }
 }
